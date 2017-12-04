@@ -6,6 +6,7 @@ public class MarsRover {
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter top right coordinates of Grid.");
         String gridSize = input.nextLine();
+        Map map = new Map(gridSize);
         ArrayList roversArray = new ArrayList( );
         System.out.println("Please enter the rover's starting coordinates and direction.");
         Boolean haveCoordinatesBeenRequested = true;
