@@ -4,6 +4,7 @@ public class Rover {
     private int positionX;
     private int positionY;
     private char directionFacing;
+    private String mapCoords;
 
     public Rover(int coordinateX, int coordinateY, char direction){
         this.positionX = coordinateX;
@@ -21,6 +22,8 @@ public class Rover {
         } else if (directionFacing == 'W'){
             this.positionX--;
         }
+        Map map = new Map(mapCoords);
+        map.verifyPosition(positionX, positionY);
     }
 
     private void turnRightOrLeft(char N, char S, char E, char W){
@@ -50,4 +53,9 @@ public class Rover {
         String printLine = coordinateX + " " + coordinateY + " " + direction;
         return printLine;
     }
+
+    public void setMapSize(String coordinates){
+        this.mapCoords = coordinates;
+    }
+
 }
