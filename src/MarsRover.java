@@ -35,9 +35,12 @@ public class MarsRover {
             roverCount++;
         }
 
-        Iterator roverIterator = roversArray.iterator( );
-        while (roverIterator.hasNext()) {
-            System.out.println(roverIterator.next());
+        printRoverCoordinates(roversArray);
+    }
+
+    private static void printRoverCoordinates(ArrayList roversArray) {
+        for (Object aRoversArray : roversArray) {
+            System.out.println(aRoversArray);
         }
     }
 
