@@ -1,6 +1,3 @@
-
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-
 import java.util.*;
 
 
@@ -15,10 +12,9 @@ public class MarsRover {
         System.out.println("Please enter the rover's starting coordinates and direction.");
         Boolean haveCoordinatesBeenRequested = true;
         int numberOfRovers = 2;
-        int roverCount = 0;
 
-        while (roverCount < numberOfRovers) {
-            haveCoordinatesBeenRequested = getaBoolean(haveCoordinatesBeenRequested);
+        for (int i = 0; i < numberOfRovers; i++) {
+            haveCoordinatesBeenRequested = checkOrRequest(haveCoordinatesBeenRequested);
             int roverX = scanner.nextInt();
             int roverY = scanner.nextInt();
 
@@ -32,7 +28,6 @@ public class MarsRover {
 
             executeSearchPattern(rover, commandArray);
             roversArray.add(rover.getPosition());
-            roverCount++;
         }
 
         printRoverCoordinates(roversArray);
@@ -44,7 +39,7 @@ public class MarsRover {
         }
     }
 
-    private static Boolean getaBoolean(Boolean haveCoordinatesBeenRequested) {
+    private static Boolean checkOrRequest(Boolean haveCoordinatesBeenRequested) {
         if (haveCoordinatesBeenRequested){
             haveCoordinatesBeenRequested = false;
         } else {
