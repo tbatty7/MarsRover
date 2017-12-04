@@ -1,6 +1,8 @@
-//import java.util.Scanner;
+
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 
 import java.util.*;
+
 
 public class MarsRover {
     public static void main(String args[]) {
@@ -9,36 +11,43 @@ public class MarsRover {
 
         System.out.println("Please enter top right coordinates of Grid.");
         String gridSize = scanner.nextLine();
-
+        ArrayList roversArray = new ArrayList( );
         System.out.println("Please enter the rover's starting coordinates and direction.");
-          int roverX = scanner.nextInt();
-          int roverY = scanner.nextInt();
+        Boolean haveCoordinatesBeenRequested = true;
+        int numberOfRovers = 2;
+        int roverCount = 0;
 
-          char roverDirection = scanner.next().charAt(0);
+        while (roverCount < numberOfRovers) {
+            haveCoordinatesBeenRequested = getaBoolean(haveCoordinatesBeenRequested);
+            int roverX = scanner.nextInt();
+            int roverY = scanner.nextInt();
 
-        Rover rover1 = new Rover(roverX, roverY, roverDirection);
+            char roverDirection = scanner.next().charAt(0);
 
-        System.out.println("Please enter the search pattern.");
-        String commandString = scanner.next();
-        String[] commandArray = commandString.split("");
+            Rover rover = new Rover(roverX, roverY, roverDirection);
 
-        executeSearchPattern(rover1, commandArray);
+            System.out.println("Please enter the search pattern.");
+            String commandString = scanner.next();
+            String[] commandArray = commandString.split("");
 
-        System.out.println("Please enter the rover's starting coordinates and direction.");
-        int roverX2 = scanner.nextInt();
-        int roverY2 = scanner.nextInt();
-        char roverDirection2 = scanner.next().charAt(0);
+            executeSearchPattern(rover, commandArray);
+            roversArray.add(rover.getPosition());
+            roverCount++;
+        }
 
-        Rover rover2 = new Rover(roverX2, roverY2, roverDirection2);
+        Iterator roverIterator = roversArray.iterator( );
+        while (roverIterator.hasNext()) {
+            System.out.println(roverIterator.next());
+        }
+    }
 
-        System.out.println("Please enter the search pattern.");
-        String commandString2 = scanner.next();
-        String[] commandArray2 = commandString2.split("");
-
-        executeSearchPattern(rover2, commandArray2);
-
-        System.out.println(rover1.getPosition());
-        System.out.println(rover2.getPosition());
+    private static Boolean getaBoolean(Boolean haveCoordinatesBeenRequested) {
+        if (haveCoordinatesBeenRequested){
+            haveCoordinatesBeenRequested = false;
+        } else {
+            System.out.println("Please enter the rover's starting coordinates and direction.");
+        }
+        return haveCoordinatesBeenRequested;
     }
 
     public static void executeSearchPattern(Rover rover1, String[] commandArray) {
